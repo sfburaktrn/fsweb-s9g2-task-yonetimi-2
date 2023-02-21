@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export default function TaskHookForm({ kisiler, submitFn }) {
   const {
@@ -21,15 +21,14 @@ export default function TaskHookForm({ kisiler, submitFn }) {
     reset({
       title: "",
       description: "",
-      deadline: ""
+      deadline: "",
     });
   }
 
-
   return (
     <form className="taskForm" onSubmit={handleSubmit(mySubmit)}>
-      <div className="form-line">
-        <label className="input-label" htmlFor="title">
+      <div className="text-center text-xl font-serif bg-amber-200">
+        <label className="bg-amber-100" htmlFor="title">
           Başlık
         </label>
         <input
@@ -39,11 +38,13 @@ export default function TaskHookForm({ kisiler, submitFn }) {
           name="title"
           type="text"
         />
-        {errors.title && <p className="input-error">{errors.title.message}</p>}
+        {errors.title && (
+          <p className="bg-fuchsia-800 text-lg">{errors.title.message}</p>
+        )}
       </div>
 
-      <div className="form-line">
-        <label className="input-label" htmlFor="description">
+      <div className="text-center text-xl font-serif bg-amber-200 pt-6">
+        <label className="bg-amber-100 " htmlFor="description">
           Açıklama
         </label>
         <textarea
@@ -60,12 +61,12 @@ export default function TaskHookForm({ kisiler, submitFn }) {
           name="description"
         ></textarea>
         {errors.description && (
-          <p className="input-error">{errors.description.message}</p>
+          <p className="bg-fuchsia-800 text-lg">{errors.description.message}</p>
         )}
       </div>
 
-      <div className="form-line">
-        <label className="input-label">İnsanlar</label>
+      <div className="text-center text-lg font-serif">
+        <label className="text-center text-lg font-serif">İnsanlar</label>
         <div>
           {kisiler.map((p) => (
             <label className="input-checkbox" key={p}>
@@ -96,16 +97,20 @@ export default function TaskHookForm({ kisiler, submitFn }) {
         </label>
         <input
           className="input-text"
-          {...register("deadline", { required: "Son teslim tarihi seçmelisiniz" })}
+          {...register("deadline", {
+            required: "Son teslim tarihi seçmelisiniz",
+          })}
           id="deadline"
           name="deadline"
           type="date"
           min="2023-01-25"
         />
-        {errors.deadline && <p className="input-error">{errors.deadline.message}</p>}
+        {errors.deadline && (
+          <p className="input-error">{errors.deadline.message}</p>
+        )}
       </div>
 
-      <div className="form-line">
+      <div className="bg-amber-400">
         <button className="submit-button" type="submit" disabled={!isValid}>
           Kaydet
         </button>
